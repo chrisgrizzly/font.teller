@@ -1,74 +1,95 @@
-<!-- Load an icon library to show a hamburger menu (bars) on small screens -->
 <!DOCTYPE html>
 <html>
-<head>
-  <link rel="stylesheet" href="index.css">
-</head>
-<body>
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <title>FONT TELLER</title>
+    <link href="styles.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800&display=swap" rel="stylesheet">
+  </head>
 
-  <div class="navbar">
-    <a href="#home" class="highlight">Font Teller</a>
-    <a href="https://github.com/chrisgrizzly/font.teller/archive/master.zip">Download Zip</a>
-    <a href="https://github.com/chrisgrizzly/font.teller">Project GitHub</a>
-    <a href="https://mahdi-roozbahani.github.io/cse4240-summer2019.github.io/">Course Info</a>
-  </div>
-  
-  
+  <body>
+    <header>
+      <a class="site-logo">
+        <p>Font teller</p>
+      </a>
+      <nav class="site-nav">
+        <ul>
+          <li><a href="#">Download Zip</a></li>
+          <li><a href="#">Project GitHub</a></li>
+          <li><a href="#">Course Info</a></li>
+        </ul>
+      </nav>
+    </header>
 
-  <div class="bg">
-  </div>
+    <main>
+      <section class="hero">
+        <div class="hero-content"></div>
+        <div class="poster">
+          <img alt="" src="Banner_v7.png">
+        </div>
+      </section>
 
-  <h1> Our Motivations </h1>
+      <div class="break"></div>
 
-  <div class="block"> 
-    <h3>Have a look at these signs. What do they tell you?</h3>
-  </div>
+      <section class="section-title">
+        <p>Our Motivations</p>
+      </section>
 
-  <img class="centered" width="50%" src="signs.png">
+      <section class="section-intro">
+        <p>
+          Fonts make words more expressive,<br>
+          <span class="attention">both aesthetically and logically.</span><br>
+          That's why we think it's important to detect them.
+        </p>
+      </section>
 
+      <div class="break"></div>
 
-  <h1> Our Approach(es) </h1>
+      <section class="section-title">
+        <p>Our approaches</p>
+      </section>
 
-  <table>
-    <tr height="100vh">
-      <td colspan="4"></td>
-    </tr>
-    <tr height="15vw">
-      <td width="15%"><img class="shadow" src="Rotation.png"></td>
-      <td width="15%"><img class="shadow" src="Strech.png"></td>
-      <td rowspan="2"  width="30%"><img src="fonts2.png"></td>
-      <td rowspan="2"  width="40%">
-        <h2>Synthesized Data</h2>
-        <h3>4 manipulations to mimic the real-life data: rotation, streching, offset, and noise.</h3>
-        <h3>13 different typefaces.</h3>
-        <h3>Easily expandable.</h3>
-      </td>
-    </tr>
-    <tr height="15vw">
-      <td width="15%"><img class="shadow" src="Offset.png"></td>
-      <td width="15%"><img class="shadow" src="Noise.png"></td>
-    </tr>
-    <tr height="100vw">
-      <td colspan="4"></td>
-    </tr>
-  </table>
-  <div class="image-text-container">
-    <img class="shadow" src="datapic.png">
-    <div class="centeredtext">
-      13,000 images. <br/> 
-      1,000 per font. <br/> 
-      (There is no limit.) <br/> 
-      <font size="6">   Starting from letter "H" as a proof of concept.   </font>
-    </div>
-  </div>
+      <section class="section-intro">
+        <p>
+          we use machine learning methods, including
+          <span class="attention">random forest</span>,
+          <span class="attention">logistic regression</span>,
+          and <span class="attention">convolutional neural network (CNN)</span>,
+          to distinguish 13 fonts. Model parameters are optimized, so are the data pre-processed with
+          <span class="attention">principal component analysis (PCA).</span>
+        </p>
+      </section>
 
-  <h1> Results + Discussion </h1>
-  <h1> Conclusion + Outlook </h1>
+      <div class="break"></div>
 
-  <div class="main">
-    <p>Some text some text some text some text..</p>
-  </div>
+      <section class="section-title">
+        <p>Results + Discussion</p>
+      </section>
 
+      <section class="section-intro">
+        <p>
+          Both random forest and CNN showed
+          <span class="attention">promising results, with high accuracies.</span>
+          The optimization of parameters is shown to be effective.
+        </p>
+      </section>
 
-</body>
+      <div class="break"></div>
+
+      <section class="section-title">
+        <p>Conclusion + Outlook</p>
+      </section>
+
+      <section class="section-intro">
+        <p>
+          We hope this project,
+          <span class="attention">achieved with simple models and low computation resources</span>,
+          can inspire people (including us) to further develop font detection to benifit industries and global communities.
+        </p>
+      </section>
+    </main>
+  </body>
 </html>
