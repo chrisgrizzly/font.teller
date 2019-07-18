@@ -12,16 +12,20 @@
 
   <body>
     <header>
-      <a class="site-logo">
-        <p>Font teller</p>
-      </a>
-      <nav class="site-nav">
-        <ul>
-          <li><a href="#">Download Zip</a></li>
-          <li><a href="#">Project GitHub</a></li>
-          <li><a href="#">Course Info</a></li>
-        </ul>
-      </nav>
+      <div class="row">
+        <div class="col">
+          <a class="style-logo">
+            <p>FONT TELLER</p>
+          </a>
+          <nav class="style-nav">
+            <ul>
+              <li><a href="#">Download Zip</a></li>
+              <li><a href="#">Project GitHub</a></li>
+              <li><a href="#">Course Info</a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
     </header>
 
     <main>
@@ -46,15 +50,17 @@
         </p>
       </section>
 
+
+
       <div class="break"></div>
 
       <section class="section-title">
-        <p>Our approaches</p>
+        <p>Our Approaches + Results</p>
       </section>
 
       <section class="section-intro">
         <p>
-          we use machine learning methods, including
+          With synthetic data, we use machine learning methods, including
           <span class="attention">random forest</span>,
           <span class="attention">logistic regression</span>,
           and <span class="attention">convolutional neural network (CNN)</span>,
@@ -65,23 +71,166 @@
 
       <div class="break"></div>
 
+      <!--------------------- Synthetic Data --------------------->
+
+      <div class="row">
+        <div class="col col-md-one-half">
+            <div class="info-box">
+              <div class="punchline">Synthetic Data</div>
+              <p>We synthesized images (32-by-32 pixels) of letters in 13 fonts. To mimic the real-life data, we applied 4 maniputations to each image: <span class="attention">rotation, stretching, offset and noise.</span></p>
+              <p>This process enables us to generate as many data as we need for the training purposes, with a high flexibilty.</p>
+              <p>This ensures that the model can be well-trained and reduces the change of overfitting. </p>
+            </div>
+        </div>
+        <div class="col col-md-one-half">
+            <img alt="" src="Synthetic data.png">
+        </div>
+      </div>
+
+      <div class="img-fw">
+        <div class="centered">
+          We used 13,000 images, <br>
+          1,000 each font, but there really is no limit.
+        </div>
+        <img alt="" src="datapic.png">
+      </div>
+
+      <!--------------------- Random Forest --------------------->
+
+      <div class="row">
+          <div class="col">
+            <div class="info-box">
+              <div class="punchline">Random Forest</div>
+              <p>Random forest is an ensembled learning model using multiple decision trees. Each tree uses a randomly picked dataset by bootstrap method, and only considers a limited features that are randomly selected.</p>
+              <p>Thus, these parameters of the model are particularly of interest: <span class="attention">depth of trees</span>, <span class="attention">number of trees</span>, and <span class="attention">number of features considered each time.</span> We optimized these data using 10-fold cross validation, as well as repeated random sub-sampling.</p>
+              <p>(Note that to reduce the complexity for random forest, we only used letter "H" as a proof of concept, assuming the font recognition is based on pre-defined letter images (post OCR).)</p>
+            </div>
+        </div>
+      </div>
+
+      <div class="row">
+          <div class="col">
+            <div class="info-box">
+              <div class="punchline">Using the Default <i>sklearn RandomForestClassifier()</i></div>
+              <p>Before optimization, after repeated 100 times random sub-sampling (training : testing = 9 : 1), the default random forest model gives <span class="attention">an average accuracy of 0.6552.</span></p>
+              <p>(Slightly) better than random guessing. :P</p>
+            </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col col-md-one-half">
+          <div class="info-box">
+            <div class="punchline">Optimization of <br> the Depth of Trees</div>
+                <p>On the right shows the accuracy results with various depths of trees. Both random sub-sampling and 10-fold cross validation suggests that the <span class="attention"> optimal range for depth of trees is from 9 to 14.</span></p>
+                <p>Starting from depth of trees = 1, the accuracies for both training and testing data goes up as more depths provides more decision boundaries for finer and better classifications. <span class="attention">However, when further increase the depth of trees, the training accuracy goes to 1, suggesting overfitting. This is verified by the decease of testing accuracy.</span></p>
+            </div>
+          </div>
+        <div class="col col-md-one-half">
+          <img alt="" src="depth_of_trees.png">
+        </div>
+      </div>
+
+      <div class="row">
+          <div class="col col-md-one-half">
+            <div class="info-box">
+              <div class="punchline">Optimization of <br> the Number of Trees</div>
+                  <p>Using the method described above, it's found that within the tested range, <span class="attention">the larger the number of trees, the better the accuracy (with no overfitting).</span></p>
+                  <p>This is expected, as the more trees would average out the wrong classifications of each individual tree, statistically. (Basically the core idea behind ensemble learning.)</p>
+                  <p>Due to the limitation of computation power, we chose <span class="attention">number of trees = 1000</span> (100 if by default).</p>
+              </div>
+            </div>
+          <div class="col col-md-one-half">
+            <img alt="" src="number_of_trees.png">
+          </div>
+        </div>
+
+      <div class="row">
+        <div class="col col-md-one-half">
+          <div class="info-box">
+            <div class="punchline">Optimization of <br> the Number of Features</div>
+              <p>Using the method described above, it's found that within the tested range, <span class="attention">the larger the number of trees, the better the accuracy (with no overfitting).</span></p>
+              <p>This is expected, as the more trees would average out the wrong classifications of each individual tree, statistically. (Basically the core idea behind ensemble learning.)</p>
+              <p>Due to the limitation of computation power, we chose <span class="attention">number of trees = 1000</span> (100 if by default).</p>
+            </div>
+          </div>
+        <div class="col col-md-one-half">
+          <img alt="" src="number_of_features.png">
+        </div>
+      </div>
+
+      <!--------------------- PCA --------------------->
+
+
+
+      <!--------------------- CNN --------------------->
+      
+      <div class="dark-break"></div>
+    
+      <div class="row">
+          <div class="col">
+            <div class="info-box">
+              <div class="punchline">Convolutional Neural Network (CNN)</div>
+              <p>We extended our project to test using home-made convolutional neural network (CNN)</p>
+              <p>For CNN based deep-learning method, we generated a comprehensive dataset. The dataset consists of 13,000 font images of <span class="attention">letters a-z, A-Z and 0-9 in 13 different font families</span>. The image samples have varying levels of random noise. </p>
+              <p>The deep learning model is implemented in <i>keras</i> and its architecure is shown below.  It mainly consists of two convolutional layers and one hidden layer. To reduce the complexity, <span class="attention">max pooling</span> is used with pool size of 2 and stride of 2. This halves the matrix dimensions from 28x28x64 to 14x14x64. To avoid overfitting, <span class="attention">dropout technique</span> is used in two stages with quarter and half of neurons dropped in each. In the output layer, <span class="attention">Binary Softmax classifier</span> is used to classify an input as one of the 13 font families. The resultant model has 420,685 total trainable parameters, as shown below.</p>
+            </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col col-md-one-half">
+          <img alt="" src="CNN_arch.png">
+        </div>
+        <div class="col col-md-one-half">
+          <img alt="" src="CNN_parameters.PNG">
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col col-md-one-half">
+          <div class="info-box">
+              <div class="punchline">CNN Results</div>
+              <p>The above model is run for 10 epochs. The test accuracy is improved with each epoch iteration and <span class="attention">reached the max 100% in 4 epochs</span>. Train accuracy however is not no high, but it is lesser of concern than the test performance. The loss function below shows similar trend.</p>
+          </div>
+        </div>
+        <div class="col col-md-one-half">
+            <img alt="" src="CNN_accuracy.png">
+          </div>
+      </div>
+
+      <div class="row">
+        <div class="col col-md-one-half">
+          <div class="info-box">
+            <div class="punchline">Effect of<br>Numer of Neurons</div>
+            <p>Number of neurons in the hidden layer is a critical parameter for the model performance and complexity. To choose it judiciously, the neuron quantity is swept from 1 to 64 as shown below. From the plot, we can observe that the <span class="attention">32-neuron layer-based model</span> offers the optimal solution for this problem. </p>
+          </div>
+        </div>
+        <div class="col col-md-one-half">
+          <img alt="" src="Neorons_compare2F.png">
+        </div>
+      </div>
+      
+      <div class="break"></div>
+
+      <div class="break"></div>
+
       <section class="section-title">
-        <p>Results + Discussion</p>
+        <p>Conclusions</p>
       </section>
 
       <section class="section-intro">
-        <p>
-          Both random forest and CNN showed
-          <span class="attention">promising results, with high accuracies.</span>
-          The optimization of parameters is shown to be effective.
-        </p>
+        <p>(0. Machine learning is fun.)</p>
+        <p>1. Both random forest and CNN have shown promising results in font recognition, with high accuracies XXX and 100%, respectively.</p>
+        <p>2. Parameter optimization and PCA can enhance the performance of random forest very much.</p>
+        <p>3. (Bonus) Confusion matrix can actually tell which fonts are more similar.</p>
       </section>
 
       <div class="break"></div>
 
       <section class="section-title">
-        <p>Conclusion + Outlook</p>
-      </section>
+        <p>Next Steps</p>
+      </section>      
 
       <section class="section-intro">
         <p>
@@ -89,7 +238,24 @@
           <span class="attention">achieved with simple models and low computation resources</span>,
           can inspire people (including us) to further develop font detection to benifit industries and global communities.
         </p>
+        <p>Some extensions for future considerations:</p>
+        <p>1. Test with real-life data, even live data from video cameras.</p>
+        <p>2. Build plug-ins for applications such as PDF readers.</p>
+        <p>3. Adding detections of other aspects of fonts, such as color, size, highlight, bold, italic, and underscore.</p>
+        <p>...</p>
       </section>
+
+      <div class="break"></div>
+
+      <div class="rol">
+        <div class="col">
+          <div class="footer-info-box">
+            <div class="punchline">Presented by Venkatesh and Zhijian (Chris) @ Georgia Tech</div>
+            <p>We are students at Georgia Tech. This website is about our project in course CX 4240, Summer 2019.</p>
+            <p>Website designed by Zhijian (Chris) Hao.</p>
+          </div>
+        </div>
+      </div>
     </main>
   </body>
 </html>
