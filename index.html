@@ -12,8 +12,8 @@
 
   <body>
     <header>
-      <div class="row">
-        <div class="col">
+      <div class="row-header">
+        <div class="col-header">
           <a class="style-logo">
             <p>FONT TELLER</p>
           </a>
@@ -50,7 +50,52 @@
         </p>
       </section>
 
+      <div class="row">
+        <div class="col col-md-one-half">
+          <div class="info-box">
+            <div class="punchline">Two Signs</div>
+            <p>Even though we might not know what they mean, we have different feelings towards them. If we are told that these are restaurant logos (they are not*), we would intuitively think that the bottom one might be for one that serves French cuisine, while the top one is a family dinner.</p>
+            <p>Well, that's the power of fonts.</p>
+          </div>
+        </div>
+        <div class="col col-md-one-half">
+          <img alt="" src="signs-2.png">
+        </div>
+      </div>
 
+      <div class="row">
+        <div class="col">
+          <div class="info-box">
+            <p>OCR (optical character recognition) technology, which converts imagesinto texts, is mature. However, <span class="attention">font information is not generally preserved during the OCR process</span>, meaning users need to reformat the whole document from scratch. This is <span class="attention">inconvenient</span> and can possibly introduce <span class="attention">human errors</span> in editing.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col col-md-one-half">
+          <div class="info-box">
+              <div class="punchline">Scenario 1</div>
+              <p>Converting scanned documents into digital formats</p>
+              <img alt="" src="match-scanned.png">
+          </div>
+        </div>
+        <div class="col col-md-one-half">
+          <div class="info-box">
+            <div class="punchline">Scenario 2</div>
+            <p>Match sketched designs with standard fonts</p>
+            <img alt="" src="match-handwritten.png">
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <div class="info-box">
+            <p>An existing app WhatTheFont uses deep learning algorithms to recognize 100,000 fonts. However, for hand-drawn characters, the app returns similar handwritten fonts (thanks to its large collection) instead of similar standard publication fonts that are ready for production. In this sense, the large collection actually hinders people’s ability to fast-prototype using pen and paper.</p>
+            <p>That's why we want to see if we can use <span class="attention">simpler models, more cost effectively, to recognize limited but major fonts.</span></p>
+          </div>
+        </div>
+      </div>
 
       <div class="break"></div>
 
@@ -112,7 +157,7 @@
           <div class="col">
             <div class="info-box">
               <div class="punchline">Using the Default <i>sklearn RandomForestClassifier()</i></div>
-              <p>Before optimization, after repeated 100 times random sub-sampling (training : testing = 9 : 1), the default random forest model gives <span class="attention">an average accuracy of 0.6552.</span></p>
+              <p>Before optimization, after repeated 100 times random sub-sampling (training : testing = 9 : 1), the default random forest model gives <span class="attention">an average accuracy of 65%.</span></p>
               <p>(Slightly) better than random guessing. :P</p>
             </div>
         </div>
@@ -149,9 +194,8 @@
         <div class="col col-md-one-half">
           <div class="info-box">
             <div class="punchline">Optimization of <br> the Number of Features</div>
-              <p>Using the method described above, it's found that within the tested range, <span class="attention">the larger the number of trees, the better the accuracy (with no overfitting).</span></p>
-              <p>This is expected, as the more trees would average out the wrong classifications of each individual tree, statistically. (Basically the core idea behind ensemble learning.)</p>
-              <p>Due to the limitation of computation power, we chose <span class="attention">number of trees = 1000</span> (100 if by default).</p>
+              <p>Using the method described above, it's found that the <span class="attention"> optimal number of features is 500.</span></p>
+              <p>This is expected, as there is a trade-off between preserving the information and decorrelating the trees.</p>
             </div>
           </div>
         <div class="col col-md-one-half">
@@ -159,9 +203,80 @@
         </div>
       </div>
 
+      <div class="row">
+        <div class="col">
+          <div class="info-box">
+            <div class="punchline">Using the Optimized <i>RandomForestClassifier()</i></div>
+            <p>After optimization, the average accuracy goes up from 65% to <span class="attention">83% (1.3X enhancement).</span></p>
+            <p>The confusion matrix is shown below. An interesting finding is that by looking at large cross terms in the confusion matrix, <span class="attention">one can also infer the similarity between fonts.</span></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+          <div class="col col-md-one-half">
+              <img alt="" src="Confusion-matrix-optimized-RF.png">
+            </div>
+        <div class="col col-md-one-half">
+          <img alt="" src="similar-fonts.png">
+        </div>
+      </div>
       <!--------------------- PCA --------------------->
 
+      <div class="dark-break"></div>
 
+      <div class="row">
+        <div class="col">
+          <div class="info-box">
+            <div class="punchline">Principal Component Analysis (PCA)</div>
+            <p>PCA selects major components that maximize the variantions among data. In terms of classification problems, such as the random forest font detection we are doing here, PCA can help maximize the seperation between classes, thus <span class="attention">improve the accuracy.</span></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col col-md-one-half">
+          <div class="info-box">
+            <div class="punchline">Optimization of the Number of Components in PCA</div>
+              <p>One important parameter is <span class="attention">how many components</span> should we pass from PCA to random forest.</p>
+              <p>It's found that <span class="attention">the best number of components is 25.</span> This makes sense as we can see from the reconstructed images. As the number of components increase, important font information starts to appear. Later, further increasing the number of components would also pick up the noises, which dilutes the font information. At number of components = 25, the font is distinguishble and the image is clean.</p>
+            </div>
+          </div>
+        <div class="col col-md-one-half">
+          <img alt="" src="PCA.png">
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col col-md-one-half">
+          <div class="info-box">
+            <div class="punchline">PCA + Random Forest</div>
+            <p>When using PCA to pre-process the data and only selecting 25 components, optimized random forest still yeilds <span class="attention">83% accuracy</span>, even we are using far less features.</p>
+            <p>This <span class="attention">reduces the computation burden</span> without sacrificing the accuracy.</p>
+          </div>
+        </div>
+        <div class="col col-md-one-half">
+          <img alt="" src="PCA-and-RF.png">
+        </div>
+      </div>
+
+      <!--------------------- Comparison --------------------->
+
+      <div class="dark-break"></div>
+
+      <div class="row">
+          <div class="col col-md-one-half">
+            <div class="info-box">
+              <div class="punchline">Comparison Between Models</div>
+                <p>We also tested <span class="attention">logisitic regression</span>. However, the accuracy is only 63%.</p>
+                <p>The differences between models are also shown in the <span class="attention">receiver operating characteristic (ROC) curve</span>. Note that since this is a multiclass problem, one-vs-all approach is used. The area under curve (AUC) is the average value for one model.</p>
+                <p>As we can see, optimized random forest has the best AUC, closely followed by optimized random forest with PCA. Logistic regression and default random forest have lower AUC.</p>
+              </div>
+            </div>
+          <div class="col col-md-one-half">
+            <img alt="" src="ROC.png">
+          </div>
+        </div>
 
       <!--------------------- CNN --------------------->
       
@@ -221,7 +336,7 @@
 
       <section class="section-intro">
         <p>(0. Machine learning is fun.)</p>
-        <p>1. Both random forest and CNN have shown promising results in font recognition, with high accuracies XXX and 100%, respectively.</p>
+        <p>1. Both random forest and CNN have shown promising results in font recognition, with high accuracies 83% and 100%, respectively.</p>
         <p>2. Parameter optimization and PCA can enhance the performance of random forest very much.</p>
         <p>3. (Bonus) Confusion matrix can actually tell which fonts are more similar.</p>
       </section>
@@ -253,6 +368,7 @@
             <div class="punchline">Presented by Venkatesh and Zhijian (Chris) @ Georgia Tech</div>
             <p>We are students at Georgia Tech. This website is about our project in course CX 4240, Summer 2019.</p>
             <p>Website designed by Zhijian (Chris) Hao.</p>
+            <p>*BTW, the two signs are written in Xhosa and mean "Thank you very much!"</p>
           </div>
         </div>
       </div>

@@ -118,6 +118,7 @@ body {
 .col {
 	width: 100%;
 	vertical-align: middle;
+	padding: 2em 0em;
 }
 
 .col p {
@@ -125,10 +126,28 @@ body {
 }
 
 .row {
-	vertical-align: middle;
+	display:table-row;
 }
 
 .row:before, .row:after {
+	content: "";
+	display: table;
+}
+
+.col-header {
+	width: 100%;
+	vertical-align: middle;
+}
+
+.col-header p {
+	margin-bottom: 0.5em;
+}
+
+.row-header {
+	padding-bottom: 3.5em;
+}
+
+.row-header:before, .row-header:after {
 	content: "";
 	display: table;
 }
@@ -206,15 +225,7 @@ body {
 
 .info-box {
 	color: #666666;
-	padding: 4em 4em 4em 4em;
-  	-webkit-align-content: center;
-	align-content: center;
-}
-
-.title-one-line {
-	background-color: #FFFFFF;
-	color: #666666;
-	padding: 2em 4em 0em 4em;
+	padding: 0em 4em 0em 4em;
   	-webkit-align-content: center;
 	align-content: center;
 }
@@ -280,6 +291,7 @@ body {
 
 	.col-md-one-half {
 		width: 50%;
+		display: table-cell;
 		vertical-align: middle;
 	}
 }
