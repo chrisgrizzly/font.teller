@@ -192,8 +192,8 @@ body {
 
 .section-intro .attention {
 	background-image: -webkit-linear-gradient(left, rgb(136, 136, 136) 0%, rgb(129, 129, 129) 100%);
-	background-image: -o-linear-gradient(left, rgb(136, 136, 136) 0%, rgb(129, 129, 129)) 100%);
-	background-image: linear-gradient(to right, rgb(136, 136, 136) 0%, rgb(129, 129, 129)) 100%);
+	background-image: -o-linear-gradient(left, rgb(136, 136, 136) 0%, rgb(129, 129, 129) 100%);
+	background-image: linear-gradient(to right, rgb(136, 136, 136) 0%, rgb(129, 129, 129) 100%);
 }
 
 .poster {
